@@ -1,6 +1,6 @@
 package common;
 
-public class Coords {
+public class Player {
 
 	private int posX = -50;
 	private int posY = -50;

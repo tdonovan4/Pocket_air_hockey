@@ -2,8 +2,16 @@ package frame;
 
 import java.awt.Graphics;
 
-public class GameFrame {
-	public void paintComponent(Graphics g) {
-		 System.out.println("Test!");
+import javax.swing.JPanel;
+
+
+@SuppressWarnings("serial")
+public class GameFrame extends JPanel {
+	
+	public void paint( Graphics g) {
+		
+		super.paintComponent(g);  
+		g.fillOval(20, 20, 75, 75);
+
 	}
 }

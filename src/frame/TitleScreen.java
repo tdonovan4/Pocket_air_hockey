@@ -24,7 +24,7 @@ public class TitleScreen extends JFrame implements ActionListener {
 	
 	public void createScreen(final MainFrame mf) {
 
-		//panel.setBackground(Color.WHITE);
+		panel.setBackground(Color.WHITE);
 		// Création panel
 		
 		GridLayout layout = new GridLayout(0, 1, 10, 10);

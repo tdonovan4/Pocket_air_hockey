@@ -8,7 +8,7 @@ public class MainFrame extends JFrame {
 	public JFrame frame = new JFrame();
 
 	public MainFrame() {
-		
+
 		super("Pocket air hockey");
 		setSize(550, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -17,5 +17,4 @@ public class MainFrame extends JFrame {
 
 		setVisible(true);
 	}
-
 }

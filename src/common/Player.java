@@ -1,9 +1,20 @@
 package common;
 
-public class Player {
+import java.awt.Color;
+import java.awt.Graphics;
 
-	private int posX = -50;
-	private int posY = -50;
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class Player extends JPanel {
+
+	private int posX = 50;
+	private int posY = 50;
+
+	public void paintComponent(Graphics g) {
+		g.setColor(Color.red);
+		g.fillOval(posX, posY, 50, 50);
+	}
 
 	public int getPosX() {
 		return posX;

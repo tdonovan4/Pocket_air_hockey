@@ -5,14 +5,12 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import common.StartGame;
-import mainPackage.Game;
+import mainPackage.Main;
+import proxyClient.MainTimer;
 
 @SuppressWarnings("serial")
 public class TitleScreen extends JFrame implements ActionListener {
@@ -21,12 +19,12 @@ public class TitleScreen extends JFrame implements ActionListener {
 	JButton jouerMulti;
 	JButton classement;
 	JPanel panel = new JPanel();
-	
+
 	public void createScreen(final MainFrame mf) {
 
-		//panel.setBackground(Color.WHITE);
+		panel.setBackground(Color.WHITE);
 		// Création panel
-		
+
 		GridLayout layout = new GridLayout(0, 1, 10, 10);
 		panel.setLayout(layout);
 		// Gérer la position des buttons
@@ -51,42 +49,45 @@ public class TitleScreen extends JFrame implements ActionListener {
 		jouerMulti.addActionListener(this);
 		classement.addActionListener(this);
 		// Création buttons
-		
+
 		mf.add(panel);
-		mf.validate();
-		mf.repaint();
+		repaint(Main.mf);
 	}
 
-	
 	public void actionPerformed(ActionEvent e) {
 
 		Object source = e.getSource();
 		// Vérification du button pressé
 
-		Game game = new Game(null, null, 0);
-		StartGame start = new StartGame();
-		
+		System.out.println(Main.game.mode);
+
+		MainTimer timer = new MainTimer();
+
 		if (source == jouerSolo) {
 			System.out.println("Jouer en Solo!");
-			game.mode = true;
-			start.start();
+			Main.game.mode = true;
 			// On launch le jeu en Solo
 
 		} else if (source == jouerMulti) {
 			System.out.println("Jouer en Multi!");
-			game.mode = false;
-			start.start();
+			Main.game.mode = false;
 			// On launch le jeu en Multi
 
 		} else {
 			System.out.println("Classement");
 			// Lancement du classement
 		}
-
-		System.out.println(game.mode);
-
-		panel.setVisible(false);
 		// On clear la fenêtre
+		panel.setVisible(false);
+		repaint(Main.mf);
+		GameFrame gFrame = new GameFrame();
+		gFrame.frame(Main.mf);
+		timer.createTimer();
+	}
+
+	public void repaint(final MainFrame mf) {
+		mf.validate();
+		mf.repaint();
 	}
 
 }

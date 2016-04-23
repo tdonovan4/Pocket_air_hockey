@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import common.StartGame;
 import mainPackage.Main;
+import proxyClient.MainTimer;
 
 @SuppressWarnings("serial")
 public class TitleScreen extends JFrame implements ActionListener {
@@ -64,7 +65,7 @@ public class TitleScreen extends JFrame implements ActionListener {
 
 		System.out.println(Main.game.mode);
 
-		StartGame start = new StartGame();
+		MainTimer timer = new MainTimer();
 
 		if (source == jouerSolo) {
 			System.out.println("Jouer en Solo!");
@@ -83,7 +84,9 @@ public class TitleScreen extends JFrame implements ActionListener {
 		// On clear la fenêtre
 		panel.setVisible(false);
 		repaint(Main.mf);
-		start.start();
+		GameFrame gFrame = new GameFrame();
+		gFrame.frame(Main.mf);
+		timer.createTimer();
 	}
 
 	public void repaint(final MainFrame mf) {

@@ -12,6 +12,7 @@ public class Player extends JPanel {
 	private int posY = 50;
 
 	public void paintComponent(Graphics g) {
+		System.out.println("Player");
 		g.setColor(Color.red);
 		g.fillOval(posX, posY, 50, 50);
 	}

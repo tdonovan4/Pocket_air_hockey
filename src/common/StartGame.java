@@ -1,14 +1,13 @@
 package common;
 
-import proxyClient.MainClock;
+import frame.GameFrame;
 
 public class StartGame {
 
 	public void start() {
-		
+
 		System.out.println("Start!");
-		
-		MainClock clock = new MainClock();
-		clock.clock();
+		GameFrame gFrame = new GameFrame();
+		gFrame.render();
 	}
 }

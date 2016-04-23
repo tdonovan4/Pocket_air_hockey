@@ -19,7 +19,7 @@ public class GameFrame extends JFrame {
 		
 		int x = (int) MouseInfo.getPointerInfo().getLocation().getX();
 		int y = (int) MouseInfo.getPointerInfo().getLocation().getY();
-
+		
 		player.setPosX(x);
 		player.setPosY(y);
 

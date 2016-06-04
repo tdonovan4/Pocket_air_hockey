@@ -11,5 +11,9 @@ public class Main {
 		TitleScreen ts = new TitleScreen();
 		ts.createScreen(mf);
 	}
+	
+	public static MainFrame getMainFrame() {
+		return mf;
+	}
 	// Appel des classes
 }

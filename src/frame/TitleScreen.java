@@ -81,7 +81,7 @@ public class TitleScreen extends JFrame implements ActionListener {
 		panel.setVisible(false);
 		repaint(Main.mf);
 		GameFrame gFrame = new GameFrame();
-		gFrame.frame(Main.mf);
+		gFrame.frame();
 		timer.createTimer();
 	}
 

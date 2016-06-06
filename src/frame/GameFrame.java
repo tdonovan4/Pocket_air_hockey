@@ -72,16 +72,6 @@ public class GameFrame {
 		return size;
 	}
 
-	public double getScreenWidth() {
-		getFrameSize();
-		return screenWidth;
-	}
-
-	public double getScreenHeight() {
-		getFrameSize();
-		return screenHeight;
-	}
-
 	public double getOriginX() {
 		getFrameSize();
 		return originX;
@@ -90,16 +80,6 @@ public class GameFrame {
 	public double getOriginY() {
 		getFrameSize();
 		return originY;
-	}
-
-	public double getWidth() {
-		getFrameSize();
-		return width;
-	}
-
-	public double getHeight() {
-		getFrameSize();
-		return height;
 	}
 
 	public double getScale() {

@@ -7,14 +7,15 @@ import frame.GameFrame;
 
 public class MainTimer extends TimerTask {
 	
+	GameFrame gf = new GameFrame();
+	
 	public void run() {
-		GameFrame gf = new GameFrame();
 		gf.render();
 		completeTask();
 	}
 	
     private void completeTask() {
-    	//
+    	//end
     }
 	
 	public void createTimer() {

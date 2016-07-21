@@ -23,4 +23,5 @@ public class Player extends JPanel {
 	public int getPosY() {
 		return posPlayerY;
 	}
+	
 }

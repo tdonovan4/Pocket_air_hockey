@@ -10,11 +10,13 @@ import java.awt.Toolkit;
 import common.Paint;
 import common.Player;
 import mainPackage.Main;
+import proxyClient.Collision;
 
 public class GameFrame {
 
 	static Paint paint = new Paint();
-
+	static Collision collision = new Collision();
+	
 	public void frame() {
 		Main.getMainFrame().setContentPane(paint);
 	}
@@ -22,15 +24,21 @@ public class GameFrame {
 	private int x;
 	private int y;
 
+	Player player = new Player();
+	
+	public void collision() {
+		System.out.println(collision.checkCollision(paint.player1, paint.puck));
+	}
+	
 	public void render() {
 
-		Player player = new Player();
-
 		getCursorCoord();
-
+		
 		player.setPosX(x);
 		player.setPosY(y);
-
+		
+		collision();
+		
 		paint.repaint();
 	}
 

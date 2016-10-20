@@ -10,12 +10,16 @@ import java.awt.geom.Ellipse2D;
 import javax.swing.JPanel;
 
 import frame.GameFrame;
+import proxyClient.Puck;
 
 @SuppressWarnings("serial")
 public class Paint extends JPanel {
-
+	
+	//Bonne chance
+	
 	Player player = new Player();
 	GameFrame gm = new GameFrame();
+	Puck Puck = new Puck();
 	
     int border = (int) Math.round(30*gm.getScale());
     int round = (int) Math.round(600*gm.getScale());
@@ -47,12 +51,14 @@ public class Paint extends JPanel {
 	
 	public Ellipse2D puck = new Ellipse2D.Float(width/2-diameterPuck/2, height/2-diameterPuck/2, diameterPuck, diameterPuck);
 	
+	public int puckWidth = width/2-diameterPuck/2;
+	public int puckHeight = height/2-diameterPuck/2;
+			
 public void paintComponent(Graphics g) {
 		
 		Graphics2D g2 = (Graphics2D)g;
 	    
 	    Rectangle frame = new Rectangle(0, 0, this.getWidth(), this.getHeight());
-	    
 	    
 	    border = (int) Math.round(30*gm.getScale());
 	    round = (int) Math.round(600*gm.getScale());
@@ -82,8 +88,15 @@ public void paintComponent(Graphics g) {
 		
 		player1 = new Ellipse2D.Float(xPlayer1, yPlayer1, diameterPlayer, diameterPlayer);
 		
-		puck = new Ellipse2D.Float(width/2-diameterPuck/2, height/2-diameterPuck/2, diameterPuck, diameterPuck);
+		puck = new Ellipse2D.Float((int) Math.round(Puck.getPuckX()*gm.getScale()), Puck.getPuckY(), diameterPuck, diameterPuck);
 	    
+		puckWidth = width/2-diameterPuck/2;
+		puckHeight = height/2-diameterPuck/2;
+	    
+	    //Reset puck
+	    if(Puck.getPuckX() == 9000) {
+	    	Puck.setPuckPos(puckWidth, puckHeight);
+	    }
 	    
 		g.setColor(Color.white);
 	    g2.fill(frame);

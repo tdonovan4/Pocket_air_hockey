@@ -27,7 +27,8 @@ public class GameFrame {
 	Player player = new Player();
 	
 	public void collision() {
-		System.out.println(collision.checkCollision(paint.player1, paint.puck));
+		collision.checkCollisionPlayer(paint.player1, paint.puck);
+		collision.checkCollision(paint.puck);
 	}
 	
 	public void render() {

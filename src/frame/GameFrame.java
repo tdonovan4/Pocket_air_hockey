@@ -1,45 +1,44 @@
 package frame;
 
-import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
+import java.awt.geom.Ellipse2D;
 
 import common.Paint;
 import common.Player;
 import mainPackage.Main;
-import proxyClient.Collision;
+import proxyClient.Puck;
 
 public class GameFrame {
 
 	static Paint paint = new Paint();
-	static Collision collision = new Collision();
-	
+	static Puck collision = new Puck();
+	public static Ellipse2D puck = Paint.puck;
+
 	public void frame() {
-		Main.getMainFrame().setContentPane(paint);
+		Main.getMainFrame().getContentPane().add(paint);
 	}
 
 	private int x;
 	private int y;
 
 	Player player = new Player();
-	
-	public void collision() {
-		collision.checkCollisionPlayer(paint.player1, paint.puck);
-		collision.checkCollision(paint.puck);
-	}
-	
-	public void render() {
 
-		getCursorCoord();
+	public void collision() {
+		collision.checkCollisionPlayer(paint.player1, puck);
+		collision.checkCollision(puck, Paint.width, Paint.height, Paint.goal1, Paint.goal2, Paint.diameterPlayer);
+	}
+
+	public void render() {
 		
+		getCursorCoord();
+
 		player.setPosX(x);
 		player.setPosY(y);
-		
+
+		puck = Paint.puck;
 		collision();
-		
 		paint.repaint();
 	}
 
@@ -51,48 +50,7 @@ public class GameFrame {
 		x = (int) b.getX();
 		y = (int) b.getY();
 	}
-
-	private double width;
-	private double height;
-	private double scale;
-	private double originX;
-	private double originY;
-	private double screenWidth;
-	private double screenHeight;
-	Rectangle size;
-
-	private void getFrameSize() {
-
-		size = Main.getMainFrame().getBounds();
-		Dimension resolution = Toolkit.getDefaultToolkit().getScreenSize();
-
-		screenWidth = resolution.getWidth();
-		screenHeight = resolution.getWidth();
-
-		width = (size.getWidth() / screenWidth);
-		height = (size.getHeight() / screenHeight);
-		originX = size.getX();
-		originY = size.getY();
-		scale = Math.min(width, height);
-	}
-
-	public Rectangle getSize() {
-		getFrameSize();
-		return size;
-	}
-
-	public double getOriginX() {
-		getFrameSize();
-		return originX;
-	}
-
-	public double getOriginY() {
-		getFrameSize();
-		return originY;
-	}
-
-	public double getScale() {
-		getFrameSize();
-		return scale;
+	public void start() {
+		collision.setPuckPos(Paint.width / 2 - Paint.diameterPuck/2, Paint.height / 2 - Paint.diameterPuck/2);
 	}
 }

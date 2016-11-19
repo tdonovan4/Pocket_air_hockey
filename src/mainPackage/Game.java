@@ -1,22 +1,18 @@
 package mainPackage;
 
 public class Game {
-	public Boolean singlemode;
+	public Boolean currentMode;
 	public String username;
-	public int score;
+	public int scorePlayer1;
+	public int scorePlayer2;
 	public boolean gameOver;
-	// Variables modifié
 
-	public boolean mode;
-	public String name;
-	public int currentScore;
-	// Variables brute
-
-	public Game(Boolean mode, String name, int currentScore, Boolean gameOver) {
-		singlemode = mode;
+	public Game(Boolean mode, String name, int score1, int score2, Boolean gameOver) {
+		currentMode = mode;
 		username = name;
-		score = currentScore;
+		scorePlayer1 = score1;
+		scorePlayer2 = score2;
 		this.gameOver = gameOver;
 	}
-	// Constructeur des settings du jeu
+	// Game setting
 }

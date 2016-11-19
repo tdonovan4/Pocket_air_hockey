@@ -9,6 +9,7 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import mainPackage.Main;
 import proxyClient.MainTimer;
 
@@ -49,7 +50,6 @@ public class TitleScreen extends JFrame implements ActionListener {
 		jouerMulti.addActionListener(this);
 		classement.addActionListener(this);
 		// Création buttons
-
 		mf.add(panel);
 		repaint(Main.mf);
 	}
@@ -59,18 +59,18 @@ public class TitleScreen extends JFrame implements ActionListener {
 		Object source = e.getSource();
 		// Vérification du button pressé
 
-		System.out.println(Main.game.mode);
+		System.out.println(Main.game.currentMode);
 
 		MainTimer timer = new MainTimer();
 
 		if (source == jouerSolo) {
 			System.out.println("Jouer en Solo!");
-			Main.game.mode = true;
+			Main.game.currentMode = true;
 			// On launch le jeu en Solo
 
 		} else if (source == jouerMulti) {
 			System.out.println("Jouer en Multi!");
-			Main.game.mode = false;
+			Main.game.currentMode = false;
 			// On launch le jeu en Multi
 
 		} else {
@@ -83,11 +83,11 @@ public class TitleScreen extends JFrame implements ActionListener {
 		GameFrame gFrame = new GameFrame();
 		gFrame.frame();
 		timer.createTimer();
+		gFrame.start();
 	}
 
 	public void repaint(final MainFrame mf) {
 		mf.validate();
 		mf.repaint();
 	}
-
 }

@@ -42,8 +42,8 @@ public class Paint extends JPanel {
 	public static int diameterPuck = (int) Math.round(55 * scale);
 	public static int diameterPlayer = (int) Math.round(75 * scale);
 
-	int xPlayer1 = (int) Math.round(player.getPosXGC() - diameterPlayer / 2);
-	int yPlayer1 = (int) Math.round(player.getPosYGC() - diameterPlayer / 2);
+	int xPlayer1 = Math.round(Main.getMainFrame().getComponent(0).getLocationOnScreen().x+Main.getMainFrame().getContentPane().getWidth()-diameterPlayer/2);
+	int yPlayer1 = Math.round(Main.getMainFrame().getComponent(0).getLocationOnScreen().y+Main.getMainFrame().getContentPane().getHeight()/2);
 
 	static public Ellipse2D puck = new Ellipse2D.Float((int) Math.round(Puck1.puckX() * scaleX),
 			(int) Math.round(Puck1.puckY() * scaleY), diameterPuck, diameterPuck);

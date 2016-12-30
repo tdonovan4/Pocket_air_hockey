@@ -1,5 +1,6 @@
 package frame;
 
+import java.awt.AWTException;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
@@ -14,7 +15,6 @@ public class GameFrame {
 
 	static Paint paint = new Paint();
 	static Puck collision = new Puck();
-	public static Ellipse2D puck = Paint.puck;
 
 	public void frame() {
 		Main.getMainFrame().getContentPane().add(paint);
@@ -26,8 +26,8 @@ public class GameFrame {
 	Player player = new Player();
 
 	public void collision() {
-		collision.checkCollisionPlayer(paint.player1, puck);
-		collision.checkCollision(puck, Paint.width, Paint.height, Paint.goal1, Paint.goal2, Paint.diameterPlayer);
+		collision.checkCollisionPlayer(paint.player1, Paint.puck);
+		collision.checkCollision(Paint.puck, Paint.width, Paint.height, Paint.goal1, Paint.goal2, Paint.diameterPlayer);
 	}
 
 	public void render() {
@@ -36,9 +36,9 @@ public class GameFrame {
 
 		player.setPosX(x);
 		player.setPosY(y);
-
-		puck = Paint.puck;
+		
 		collision();
+		
 		paint.repaint();
 	}
 
@@ -51,6 +51,11 @@ public class GameFrame {
 		y = (int) b.getY();
 	}
 	public void start() {
+		try {
+			Player.replace(Paint.width, Paint.height, Paint.diameterPlayer);
+		} catch (AWTException e) {
+			e.printStackTrace();
+		}
 		collision.setPuckPos(Paint.width / 2 - Paint.diameterPuck/2, Paint.height / 2 - Paint.diameterPuck/2);
 	}
 }

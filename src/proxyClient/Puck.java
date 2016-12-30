@@ -117,6 +117,8 @@ public class Puck extends JPanel {
 
 		boolean collision = false;
 		
+		//TODO rewrite the goal part
+		
 		if (goal1.intersects(puck.getBounds()) || goal2.intersects(puck.getBounds())) {
 			nearGoal = true;
 		} else {
@@ -130,14 +132,14 @@ public class Puck extends JPanel {
 			puckX = sizeX/4-puck.getWidth()/2;
 			puckY = sizeY/2-puck.getHeight()/2;
 			
-			puckSpeedX = 0;
-			puckSpeedY = 0;
-			
 			try {
-				Player.goal(sizeX, sizeY, p1);
+				Player.replace(sizeX, sizeY, p1);
 			} catch (AWTException e) {
 				e.printStackTrace();
 			}
+			
+			puckSpeedX = 0;
+			puckSpeedY = 0;
 			
 			Main.game.scorePlayer1++;
 		}
@@ -149,14 +151,14 @@ public class Puck extends JPanel {
 			puckX = sizeX/4*3-puck.getWidth()/2;
 			puckY = sizeY/2-puck.getHeight()/2;
 			
-			puckSpeedX = 0;
-			puckSpeedY = 0;
-			
 			try {
-				Player.goal(sizeX, sizeY, p1);
+				Player.replace(sizeX, sizeY, p1);
 			} catch (AWTException e) {
 				e.printStackTrace();
 			}
+			
+			puckSpeedX = 0;
+			puckSpeedY = 0;
 			
 			Main.game.scorePlayer2++;
 		}

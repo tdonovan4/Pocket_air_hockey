@@ -4,7 +4,6 @@ import java.awt.AWTException;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
-import java.awt.geom.Ellipse2D;
 
 import common.Paint;
 import common.Player;
@@ -17,6 +16,7 @@ public class GameFrame {
 	static Puck collision = new Puck();
 
 	public void frame() {
+		//Adding paint to frame
 		Main.getMainFrame().getContentPane().add(paint);
 	}
 

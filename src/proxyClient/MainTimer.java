@@ -3,7 +3,6 @@ package proxyClient;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import common.Player;
 import frame.GameFrame;
 import mainPackage.Main;
 
@@ -12,8 +11,10 @@ public class MainTimer extends TimerTask {
 	static Timer timer = new Timer(true);
 	
 	public void run() {
+		//Rendering a frame
 		gf.render();
 		completeTask();
+		//Stop timer
 		if (Main.game.maxScore <= Main.game.scorePlayer1 || Main.game.maxScore <= Main.game.scorePlayer2) {
 			timer.cancel();
 			timer.purge();
@@ -25,6 +26,7 @@ public class MainTimer extends TimerTask {
     }
 	
 	public void createTimer() {
+		//Creation of timer
 		TimerTask timerTask = new MainTimer();
 		timer.scheduleAtFixedRate(timerTask, 0, 17);
 		System.out.println("TimerTask started");

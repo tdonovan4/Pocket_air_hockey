@@ -1,6 +1,9 @@
 package common;
 
 import java.awt.AWTException;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
 import java.awt.Robot;
 import javax.swing.JPanel;
 
@@ -17,7 +20,7 @@ public class Player extends JPanel {
 
 	static double speedPlayerX;
 	static double speedPlayerY;
-
+	
 	public static void replace(double width, double height, int player) throws AWTException {
 		Robot r = new Robot();
 		
@@ -32,24 +35,28 @@ public class Player extends JPanel {
 		speedPlayerY = 0;
 	}
 	
-	public void setPosX(int posX) {
+	public void posPlayer() {
+		//Getting cursor position
+		PointerInfo a = MouseInfo.getPointerInfo();
+		Point b = a.getLocation();
+		
+		//posX
 		lastPosPlayerX = posPlayerX;
-		posPlayerX = posX;
+		posPlayerX = b.getX();
 		speedPlayerX = 0.1 * speedPlayerX + (posPlayerX - lastPosPlayerX);
 		if (Math.abs(speedPlayerX) < 0.1) {
 			speedPlayerX = 0;
 		}
-	}
-
-	public void setPosY(int posY) {
+		
+		//posY
 		lastPosPlayerY = posPlayerY;
-		posPlayerY = posY;
+		posPlayerY = b.getY();
 		speedPlayerY = 0.1 * speedPlayerY + (posPlayerY - lastPosPlayerY);
 		if (Math.abs(speedPlayerY) < 0.1) {
 			speedPlayerY = 0;
 		}
 	}
-
+	
 	public double getSpeedPlayerX() {
 		return (speedPlayerX);
 	}

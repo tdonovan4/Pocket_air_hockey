@@ -136,8 +136,8 @@ public class TitleScreen extends JFrame implements ActionListener {
 		MainTimer timer = new MainTimer();
 		
 		gFrame.frame();
-		timer.createTimer();
 		gFrame.start();
+		timer.createTimer();
 	}
 
 	public void repaint(final MainFrame mf) {

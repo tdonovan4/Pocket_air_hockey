@@ -1,9 +1,6 @@
 package frame;
 
 import java.awt.AWTException;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.PointerInfo;
 
 import common.Paint;
 import common.Player;
@@ -13,49 +10,42 @@ import proxyClient.Puck;
 public class GameFrame {
 
 	static Paint paint = new Paint();
-	static Puck collision = new Puck();
+	static Puck puck = new Puck();
 
 	public void frame() {
-		//Adding paint to frame
+		// Adding paint to frame
 		Main.getMainFrame().getContentPane().add(paint);
 	}
-
-	private int x;
-	private int y;
 
 	Player player = new Player();
 
 	public void collision() {
-		collision.checkCollisionPlayer(paint.player1, Paint.puck);
-		collision.checkCollision(Paint.puck, Paint.width, Paint.height, Paint.goal1, Paint.goal2, Paint.diameterPlayer);
+		//Checking collision
+		puck.checkCollisionPlayer(paint.player1, Paint.puck);
+		puck.checkCollision(Paint.puck, Paint.width, Paint.height, Paint.goal1, Paint.goal2, Paint.diameterPlayer);
 	}
 
 	public void render() {
+		//Pos player
+		player.posPlayer();
 		
-		getCursorCoord();
-
-		player.setPosX(x);
-		player.setPosY(y);
-		
+		//Checking collision
 		collision();
 		
+		//Refreshing
 		paint.repaint();
 	}
 
-	private void getCursorCoord() {
-
-		PointerInfo a = MouseInfo.getPointerInfo();
-		Point b = a.getLocation();
-
-		x = (int) b.getX();
-		y = (int) b.getY();
-	}
 	public void start() {
+		// Last settings
 		try {
+			// Moving cursor
 			Player.replace(Paint.width, Paint.height, Paint.diameterPlayer);
 		} catch (AWTException e) {
+			// Cursor cannot be moved
 			e.printStackTrace();
 		}
-		collision.setPuckPos(Paint.width / 2 - Paint.diameterPuck/2, Paint.height / 2 - Paint.diameterPuck/2);
+		// Setting puck pos
+		puck.setPuckPos(Paint.width / 2 - Paint.diameterPuck / 2, Paint.height / 2 - Paint.diameterPuck / 2);
 	}
 }

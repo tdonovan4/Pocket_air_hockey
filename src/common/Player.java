@@ -20,35 +20,37 @@ public class Player extends JPanel {
 
 	static double speedPlayerX;
 	static double speedPlayerY;
-	
+
 	public static void replace(double width, double height, int player) throws AWTException {
 		Robot r = new Robot();
-		
-		lastPosPlayerX = Math.round(Main.getMainFrame().getComponent(0).getLocationOnScreen().x+Main.getMainFrame().getContentPane().getWidth()-player/2);
-		lastPosPlayerY = Math.round(Main.getMainFrame().getComponent(0).getLocationOnScreen().y+Main.getMainFrame().getContentPane().getHeight()/2);
-		
+
+		lastPosPlayerX = Math.round(Main.getMainFrame().getComponent(0).getLocationOnScreen().x
+				+ Main.getMainFrame().getContentPane().getWidth() - player / 2);
+		lastPosPlayerY = Math.round(Main.getMainFrame().getComponent(0).getLocationOnScreen().y
+				+ Main.getMainFrame().getContentPane().getHeight() / 2);
+
 		posPlayerX = lastPosPlayerX;
 		posPlayerY = lastPosPlayerY;
-		
-		r.mouseMove((int) lastPosPlayerX,(int) lastPosPlayerY);
+
+		r.mouseMove((int) lastPosPlayerX, (int) lastPosPlayerY);
 		speedPlayerX = 0;
 		speedPlayerY = 0;
 	}
-	
+
 	public void posPlayer() {
-		//Getting cursor position
+		// Getting cursor position
 		PointerInfo a = MouseInfo.getPointerInfo();
 		Point b = a.getLocation();
-		
-		//posX
+
+		// posX
 		lastPosPlayerX = posPlayerX;
 		posPlayerX = b.getX();
 		speedPlayerX = 0.1 * speedPlayerX + (posPlayerX - lastPosPlayerX);
 		if (Math.abs(speedPlayerX) < 0.1) {
 			speedPlayerX = 0;
 		}
-		
-		//posY
+
+		// posY
 		lastPosPlayerY = posPlayerY;
 		posPlayerY = b.getY();
 		speedPlayerY = 0.1 * speedPlayerY + (posPlayerY - lastPosPlayerY);
@@ -56,7 +58,7 @@ public class Player extends JPanel {
 			speedPlayerY = 0;
 		}
 	}
-	
+
 	public double getSpeedPlayerX() {
 		return (speedPlayerX);
 	}
@@ -72,13 +74,13 @@ public class Player extends JPanel {
 	public double getPosY() {
 		return posPlayerY;
 	}
-	
+
 	public double getPosXGC() {
-		return (posPlayerX- Main.getMainFrame().getComponent(0).getLocationOnScreen().x);
+		return (posPlayerX - Main.getMainFrame().getComponent(0).getLocationOnScreen().x);
 	}
-	
+
 	public double getPosYGC() {
-		return (posPlayerY- Main.getMainFrame().getComponent(0).getLocationOnScreen().y);
+		return (posPlayerY - Main.getMainFrame().getComponent(0).getLocationOnScreen().y);
 	}
 
 }

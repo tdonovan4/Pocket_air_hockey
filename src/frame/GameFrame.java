@@ -5,12 +5,14 @@ import java.awt.AWTException;
 import common.Paint;
 import common.Player;
 import mainPackage.Main;
+import proxyClient.BotAI;
 import proxyClient.Puck;
 
 public class GameFrame {
 
-	static Paint paint = new Paint();
+	public static Paint paint = new Paint();
 	static Puck puck = new Puck();
+	static BotAI bot = new BotAI();
 
 	public void frame() {
 		// Adding paint to frame
@@ -20,19 +22,20 @@ public class GameFrame {
 	Player player = new Player();
 
 	public void collision() {
-		//Checking collision
+		// Checking collision
 		puck.checkCollisionPlayer(paint.player1, Paint.puck);
-		puck.checkCollision(Paint.puck, Paint.width, Paint.height, Paint.goal1, Paint.goal2, Paint.diameterPlayer);
+		puck.checkCollision(Paint.puck, Paint.width, Paint.height, Paint.goalY, Paint.diameterPlayer);
 	}
 
 	public void render() {
-		//Pos player
-		player.posPlayer();
-		
-		//Checking collision
+		// Checking collision
 		collision();
-		
-		//Refreshing
+		bot.bot();
+
+		// Pos player
+		player.posPlayer();
+
+		// Refreshing
 		paint.repaint();
 	}
 

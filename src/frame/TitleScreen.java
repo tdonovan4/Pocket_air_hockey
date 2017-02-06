@@ -73,7 +73,6 @@ public class TitleScreen extends JFrame implements ActionListener {
 		} else if (source == jouerMulti) {
 			System.out.println("Jouer en Multi!");
 			Main.game.currentMode = false;
-			enterGameInfo();
 
 		} else if (source == classement) {
 			System.out.println("Classement");
@@ -97,7 +96,7 @@ public class TitleScreen extends JFrame implements ActionListener {
 
 	private void enterGameInfo() {
 		//Creation of panel for game settings
-		panel.setVisible(false);
+		Main.mf.remove(panel);
 		
 		gameInfoPanel.setBackground(Color.white);
 		
@@ -130,6 +129,7 @@ public class TitleScreen extends JFrame implements ActionListener {
 	
 	private void startGame() {
 		//Starting the game
+		
 		gameInfoPanel.setVisible(false);
 		
 		GameFrame gFrame = new GameFrame();
@@ -138,6 +138,8 @@ public class TitleScreen extends JFrame implements ActionListener {
 		gFrame.frame();
 		gFrame.start();
 		timer.createTimer();
+		
+		Main.mf.remove(gameInfoPanel);
 	}
 
 	public void repaint(final MainFrame mf) {

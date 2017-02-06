@@ -4,7 +4,7 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
-	
+
 	public MainFrame() {
 
 		super("Pocket air hockey");
@@ -12,7 +12,7 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		// Création frame
-		
+
 		setVisible(true);
 	}
 }

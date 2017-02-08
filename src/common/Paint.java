@@ -43,7 +43,7 @@ public class Paint extends JPanel {
 	public static int goalY = (int) Math.round(175 * scaleY);
 
 	// diameter puck and player
-	public static int diameterPuck = (int) Math.round(55 * scale);
+	public static int diameterPuck = (int) Math.round(Puck.diameterPuck * scale);
 	public static int diameterPlayer = (int) Math.round(75 * scale);
 
 	// pos player
@@ -56,7 +56,7 @@ public class Paint extends JPanel {
 	static public Ellipse2D puck = new Ellipse2D.Float((int) Math.round(Puck1.puckX() * scaleX),
 			(int) Math.round(Puck1.puckY() * scaleY), diameterPuck, diameterPuck);
 	public Ellipse2D player1 = new Ellipse2D.Float(xPlayer1, yPlayer1, diameterPlayer, diameterPlayer);
-	
+
 	public Ellipse2D player2 = new Ellipse2D.Float(width / 4 - diameterPlayer / 2, height / 2 - diameterPlayer / 2,
 			diameterPlayer, diameterPlayer);
 
@@ -95,13 +95,13 @@ public class Paint extends JPanel {
 
 		// diameter player and puck
 		diameterPlayer = (int) Math.round(75 * scale);
-		diameterPuck = (int) Math.round(55 * scale);
+		diameterPuck = (int) Math.round(Puck.diameterPuck * scale);
 
 		// Player pos
 		double posXGC = Math.max((int) Math.round(player.getPosXGC()), 0 + diameterPlayer / 2);
 		xPlayer1 = Math.min((int) Math.round(posXGC) - diameterPlayer / 2, width - diameterPlayer);
 
-		yPlayer1 = Math.max((int) Math.round(player.getPosYGC()) - diameterPlayer / 2, 0 + diameterPlayer / 2);
+		yPlayer1 = Math.max((int) Math.round(player.getPosYGC()) - diameterPlayer / 2, diameterPlayer / 2);
 		double posYGC = Math.max((int) Math.round(player.getPosYGC()), 0 + diameterPlayer / 2);
 		yPlayer1 = Math.min((int) Math.round(posYGC) - diameterPlayer / 2, height - diameterPlayer);
 
@@ -130,12 +130,12 @@ public class Paint extends JPanel {
 				goalY - diameterPuck);
 
 		player1 = new Ellipse2D.Float(xPlayer1, yPlayer1, diameterPlayer, diameterPlayer);
-		
-		player2 = new Ellipse2D.Float(Math.round(BotAI.botX), Math.round(BotAI.botY),
-				diameterPlayer, diameterPlayer);
 
-		puck = new Ellipse2D.Float((int) Math.round(Puck1.puckX() * scaleX), (int) Math.round(Puck1.puckY() * scaleY),
-				diameterPuck, diameterPuck);
+		player2 = new Ellipse2D.Float(Math.round(BotAI.botX - diameterPlayer / 2),
+				Math.round(BotAI.botY - diameterPlayer / 2), diameterPlayer, diameterPlayer);
+
+		puck = new Ellipse2D.Float(Math.round((Puck1.puckX() - diameterPuck / 2) * scaleX),
+				Math.round((Puck1.puckY() - diameterPuck / 2) * scaleY), diameterPuck, diameterPuck);
 
 		// Drawing all the objects
 		g.setColor(Color.white);

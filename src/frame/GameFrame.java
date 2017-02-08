@@ -23,8 +23,8 @@ public class GameFrame {
 
 	public void collision() {
 		// Checking collision
-		puck.checkCollisionPlayer(paint.player1, Paint.puck);
-		puck.checkCollision(Paint.puck, Paint.width, Paint.height, Paint.goalY, Paint.diameterPlayer);
+		puck.checkCollisionPlayer(paint.player1);
+		puck.checkCollision(Paint.width, Paint.height, Paint.goalY, Paint.diameterPlayer);
 	}
 
 	public void render() {
@@ -49,6 +49,6 @@ public class GameFrame {
 			e.printStackTrace();
 		}
 		// Setting puck pos
-		puck.setPuckPos(Paint.width / 2 - Paint.diameterPuck / 2, Paint.height / 2 - Paint.diameterPuck / 2);
+		puck.setPuckPos(Paint.width / 2, Paint.height / 2);
 	}
 }

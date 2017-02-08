@@ -29,6 +29,8 @@ public class Puck extends JPanel {
 	static double puckY = 0;
 
 	static boolean goal = false;
+	
+	public static int diameterPuck = 55;
 
 	public void setPuckPos(double x, double y) {
 		// Reset puck pos
@@ -70,28 +72,28 @@ public class Puck extends JPanel {
 	}
 
 	public double puckX() {
-		puckSpeedX = Math.min(puckSpeedX, 30.0);
+		puckSpeedX = Math.min(puckSpeedX, 10.0);
 		puckSpeedX = puckSpeedX - (0.015 * puckSpeedX);
 		puckX = puckX + puckSpeedX;
 		return puckX;
 	}
 
 	public double puckY() {
-		puckSpeedY = Math.min(puckSpeedY, 30.0);
+		puckSpeedY = Math.min(puckSpeedY, 10.0);
 		puckSpeedY = puckSpeedY - (0.015 * puckSpeedY);
 		puckY = puckY + puckSpeedY;
 		return puckY;
 	}
 
-	public boolean checkCollisionPlayer(Ellipse2D player1, Ellipse2D puck) {
+	public boolean checkCollisionPlayer(Ellipse2D player1) {
 		// Checking if puck and player in collision
 
 		rad1 = player1.getWidth() * 0.5;
-		rad2 = puck.getWidth() * 0.5;
+		rad2 = diameterPuck/2;
 		double cx1 = player1.getCenterX();
 		double cy1 = player1.getCenterY();
-		cx2 = puck.getCenterX();
-		cy2 = puck.getCenterY();
+		cx2 = puckX;
+		cy2 = puckY;
 
 		dist = Math.sqrt((cx2 - cx1) * (cx2 - cx1) + (cy2 - cy1) * (cy2 - cy1));
 
@@ -106,25 +108,25 @@ public class Puck extends JPanel {
 		return collision;
 	}
 
-	public boolean checkCollision(Ellipse2D puck, double sizeX, double sizeY, int goalY, int p1) {
-		cx2 = puck.getCenterX();
-		cy2 = puck.getCenterY();
+	public boolean checkCollision(double sizeX, double sizeY, int goalY, int p1) {
+		cx2 = puckX;
+		cy2 = puckY;
 
-		rad2 = puck.getWidth() * 0.5;
+		rad2 = diameterPuck/2;
 
 		boolean collision = false;
 
-		if (puck.getX() >= -puck.getWidth() && puck.getX() <= sizeX + puck.getWidth() / 2) {
+		if (puckX >= -puckX && puckX <= sizeX + puckX / 2) {
 			goal = false;
 		}
 
 		if (cx2 - rad2 < 0) {
 			if (puckY < sizeY / 2 + goalY / 2 - p1 / 2 && puckY > sizeY / 2 - goalY / 2 - p1 / 2) {
-				if (puckX <= -puck.getWidth()) {
+				if (puckX <= -puckX) {
 					goal = true;
 
-					puckX = sizeX / 4 - puck.getWidth() / 2;
-					puckY = sizeY / 2 - puck.getHeight() / 2;
+					puckX = sizeX / 4;
+					puckY = sizeY / 2;
 
 					try {
 						Player.replace(sizeX, sizeY, p1);
@@ -140,20 +142,20 @@ public class Puck extends JPanel {
 				}
 			} else {
 				collision = true;
-				collisionHoriz(0);
+				collisionHoriz(rad2);
 			}
 		}
 		if (cy2 - rad2 < 0) {
 			collision = true;
-			collisionVert(0);
+			collisionVert(rad2);
 		}
 		if (cx2 + rad2 > sizeX) {
 			if (puckY < sizeY / 2 + goalY / 2 - p1 / 2 && puckY > sizeY / 2 - goalY / 2 - p1 / 2) {
 				if (puckY > sizeY / 2 - goalY / 2 - p1 / 2) {
 					goal = true;
 
-					puckX = sizeX / 4 * 3 - puck.getWidth() / 2;
-					puckY = sizeY / 2 - puck.getHeight() / 2;
+					puckX = sizeX / 4 * 3;
+					puckY = sizeY / 2;
 
 					try {
 						Player.replace(sizeX, sizeY, p1);
@@ -168,12 +170,12 @@ public class Puck extends JPanel {
 				}
 			} else {
 				collision = true;
-				collisionHoriz(sizeX - (rad2 * 2));
+				collisionHoriz(sizeX - rad2);
 			}
 		}
 		if (cy2 + rad2 > sizeY) {
 			collision = true;
-			collisionVert(sizeY - (rad2 * 2));
+			collisionVert(sizeY - rad2);
 		}
 		return collision;
 	}

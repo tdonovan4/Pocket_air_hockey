@@ -20,7 +20,7 @@ public class Player extends JPanel {
 
 	static double speedPlayerX;
 	static double speedPlayerY;
-
+	
 	public static void replace(double width, double height, int player) throws AWTException {
 		Robot r = new Robot();
 

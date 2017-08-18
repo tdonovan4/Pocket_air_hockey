@@ -5,6 +5,7 @@ import java.util.TimerTask;
 
 import frame.GameFrame;
 import frame.TitleScreen;
+import mainPackage.Game;
 import mainPackage.Main;
 
 public class MainTimer extends TimerTask {
@@ -12,20 +13,28 @@ public class MainTimer extends TimerTask {
 	static Timer timer = new Timer(true);
 	
 	public void run() {
-		//Rendering a frame
-		gf.render();
-		completeTask();
-		//Stop timer
-		if (Main.game.maxScore <= Main.game.scorePlayer1 || Main.game.maxScore <= Main.game.scorePlayer2) {
+		if (Game.maxScore <= Game.scorePlayer1 || Game.maxScore <= Game.scorePlayer2) {
 			timer.cancel();
 			timer.purge();
-			Main.reset();
 			
+			gf.win();
+			
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			
+			Main.reset();
 			Main.mf.getContentPane().remove(GameFrame.paint);
 			
 	 		TitleScreen ts = new TitleScreen();
 			ts.createScreen(Main.mf);
+		} else {
+			gf.render();
 		}
+		completeTask();
 	}
 	
     private void completeTask() {

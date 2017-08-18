@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import mainPackage.Game;
 import mainPackage.Main;
 import proxyClient.MainTimer;
 
@@ -81,15 +82,15 @@ public class TitleScreen extends JFrame implements ActionListener {
 		if (source == start) {
 			try {
 				//Setting maxScore
-				Main.game.maxScore = Integer.parseInt(numberOfPoints.getText());
+				Game.maxScore = Integer.parseInt(numberOfPoints.getText());
 				if (Integer.parseInt(numberOfPoints.getText()) < 1) {
-					Main.game.maxScore = 10;
+					Game.maxScore = 10;
 				}
 			} catch (NumberFormatException ex) {
 				//Wrong value
-				Main.game.maxScore = 10;
+				Game.maxScore = 10;
 			}
-			System.out.println(Main.game.maxScore);
+			System.out.println(Game.maxScore);
 			startGame();
 		}
 	}

@@ -1,61 +1,60 @@
 package frame;
 
 import java.awt.AWTException;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.PointerInfo;
-import java.awt.geom.Ellipse2D;
 
 import common.Paint;
 import common.Player;
+import mainPackage.Game;
 import mainPackage.Main;
+import proxyClient.BotAI;
 import proxyClient.Puck;
 
 public class GameFrame {
 
-	static Paint paint = new Paint();
-	static Puck collision = new Puck();
-
+	public static Paint paint = new Paint();
+	static Puck puck = new Puck();
+	static BotAI bot = new BotAI();
+	
 	public void frame() {
+		// Adding paint to frame
 		Main.getMainFrame().getContentPane().add(paint);
 	}
-
-	private int x;
-	private int y;
 
 	Player player = new Player();
 
 	public void collision() {
-		collision.checkCollisionPlayer(paint.player1, Paint.puck);
-		collision.checkCollision(Paint.puck, Paint.width, Paint.height, Paint.goal1, Paint.goal2, Paint.diameterPlayer);
+		// Checking collision
+		puck.checkCollisionPlayer(paint.player1, BotAI.botX, BotAI.botY);
+		puck.checkCollision(Paint.width, Paint.height, Paint.goalY, Game.diameterPlayer);
 	}
 
 	public void render() {
+		// Pos player
+		player.posPlayer();
 		
-		getCursorCoord();
-
-		player.setPosX(x);
-		player.setPosY(y);
-		
+		// Checking collision
+		bot.bot();
 		collision();
-		
+		puck.speedLimit();
+
+		// Refreshing
 		paint.repaint();
 	}
 
-	private void getCursorCoord() {
-
-		PointerInfo a = MouseInfo.getPointerInfo();
-		Point b = a.getLocation();
-
-		x = (int) b.getX();
-		y = (int) b.getY();
-	}
 	public void start() {
+		// Last settings
 		try {
-			Player.replace(Paint.width, Paint.height, Paint.diameterPlayer);
+			// Moving cursor
+			Player.replace(Paint.width, Paint.height, Game.diameterPlayer);
 		} catch (AWTException e) {
+			// Cursor cannot be moved
 			e.printStackTrace();
 		}
-		collision.setPuckPos(Paint.width / 2 - Paint.diameterPuck/2, Paint.height / 2 - Paint.diameterPuck/2);
+		// Setting puck pos
+		puck.setPuckPos(Game.gameWidth / 2, Game.gameHeight / 2);
+	}
+	public void win() {
+		Paint.win = true;
+		paint.repaint();
 	}
 }

@@ -4,7 +4,7 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
-	
+
 	public MainFrame() {
 
 		super("Pocket air hockey");

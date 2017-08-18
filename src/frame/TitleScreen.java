@@ -55,6 +55,7 @@ public class TitleScreen extends JFrame implements ActionListener {
 		jouerSolo.addActionListener(this);
 		jouerMulti.addActionListener(this);
 		classement.addActionListener(this);
+    
 		mf.add(panel);
 		repaint(Main.mf);
 	}
